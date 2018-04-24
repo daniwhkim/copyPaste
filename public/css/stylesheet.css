@@ -1,0 +1,219 @@
+body {
+  font-family: 'Space Mono', monospace;
+  margin: 0px;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 36px;
+  width: 200px;
+  margin: 0px;
+  padding: 40px 0px;
+}
+
+h2 {
+  padding: 40px 0px;
+  margin: 0px;
+  font-size: 24px;
+}
+
+.form h2 {
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 24px;
+}
+
+.doughnut h2 {
+  color: #FFFFFF;
+  font-size: 24px;
+}
+
+p {
+  float: right;
+  margin: 0px;
+  padding-bottom: 40px;
+  width: 400px;
+  font-size: 14px;
+}
+
+@media (max-width: 786px) {
+  .intro p {
+    float: left;
+    width: 100%;
+  }
+}
+
+.doughnut .canvasWrapper{
+  width: 30%;
+  margin: 0px auto;
+}
+
+.line .canvasWrapper{
+  width: 60%;
+  margin: 0px auto;
+}
+
+.doughnut,
+.line {
+  position: relative;
+}
+
+.doughnut {
+  background-color: #000000;
+  padding-bottom: 40px;
+}
+
+label {
+  font-weight: 100;
+  font-size: 14px;
+}
+
+label.copy {
+  position: absolute;
+  top: 260px;
+  left: 150px;
+  transform: rotate(-90deg);
+  color: #FFFFFF;
+}
+
+label.paste{
+  position: absolute;
+  top: 260px;
+  right: 150px;
+  transform: rotate(-90deg);
+  color: #FFFFFF;
+}
+
+@media (max-width: 786px) {
+  label.copy {
+    top: 190px;
+    left: -60px;
+    width: 220px;
+  }
+
+  label.paste {
+    top: 190px;
+    right: -60px;
+    width: 220px;
+  }
+}
+
+label strong {
+  font-size: 24px;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-weight: 100;
+}
+
+label.yAxis {
+  position: absolute;
+  left: 10px;
+  top: 250px;
+  width: 300px;
+  transform: rotate(-90deg);
+  font-size: 14px;
+}
+
+label.yAxis strong,
+label.xAxis strong {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-weight: 100;
+}
+
+label.xAxis {
+  text-align: center;
+  margin: 40px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .doughnut .canvasWrapper{
+    width: 60%;
+  }
+
+  .line .canvasWrapper{
+    width: 100%;
+  }
+}
+
+.history {
+  padding-bottom: 40px;
+}
+
+#tileHolder .tile {
+  border: 1px solid #000000;
+}
+
+#tileHolder .tile label {
+  width: 50%;
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+#tileHolder .tile p {
+  padding: 5px 10px;
+  margin: 0px;
+  width: 50%;
+  text-align: right;
+}
+
+.controlPanel {
+  margin-bottom: 55px;
+}
+
+.controlPanel a {
+  width: 100%;
+  display: inline-block;
+  background-color: #000000;
+  line-height: 40px;
+  color: #FFFFFF;
+  text-align: center;
+  float: left;
+}
+
+.controlPanel a.white {
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 0 0 1px #000000 inset;
+}
+
+.controlPanel a:hover {
+  background-color: #0000FF;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.form {
+  padding-bottom: 40px;
+  background-color: #000000;
+}
+
+.form h2 {
+  color: #FFFFFF;
+}
+
+form input {
+  width: 100%;
+  line-height: 40px;
+  border: 1px solid #000000;
+  border-radius: 0px;
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+form button {
+  float: right;
+  margin: 20px 0px;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  line-height: 40px;
+  padding: 0px 10px;
+  font-size: 14px;
+  width: 23%;
+}
+
+form button:hover {
+  background-color: #0000FF;
+  color: #FFFFFF;
+}

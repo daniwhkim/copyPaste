@@ -11,11 +11,13 @@ var app = express();
 
 // if in development mode, load .env variables
 if (app.get("env") === "development") {
-    env(__dirname + '/.env');
+    env(__dirname + "/.env");
 }
 
 // connect to database
-app.db = mongoose.connect(process.env.MONGODB_URI);
+app.db = mongoose.connect(process.env.MONGODB_URI, {
+  useMongoClient: true
+});
 
 // view engine setup - this app uses Hogan-Express
 // https://github.com/vol4ok/hogan-express
@@ -25,7 +27,7 @@ app.set('layout','layout');
 app.engine('html', require('hogan-express'));;
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -66,6 +68,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

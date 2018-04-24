@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Copy & Paste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container intro">
+      <h1>Copy & Paste</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+
+    <div class="container doughnut">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>The big picture</h2>
+          <div class="canvasWrapper">
+            <canvas id="doughnutChart"></canvas>
+          </div>
+          <label class="copy"># of times <strong>Cmd + C</strong> was used</label>
+          <label class="paste"># of times <strong>Cmd + V</strong> was used</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="container line">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Daily commands</h2>
+          <div class="canvasWrapper">
+            <canvas id="lineChart"></canvas>
+          </div>
+          <label class="xAxis"><strong>Date</strong></label>
+          <label class="yAxis"># of times <strong>Cmd + C + V</strong> was successfully used</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="container form">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Add statistics</h2>
+          <form action="/api/create" method="POST">
+            <div class="col-lg-3 col-md-6 col-xs-12">
+              <input type="date" name="date" id="date" placeholder="Date" required>
+            </div>
+            <div class="col-lg-3 col-md-6 col-xs-12">
+              <input type="number" name="copy" id="copy" placeholder="Total copy count" required>
+            </div>
+            <div class="col-lg-3 col-md-6 col-xs-12">
+              <input type="number" name="paste" id="paste" placeholder="Total paste count" required>
+            </div>
+            <div class="col-lg-3 col-md-6 col-xs-12">
+              <input type="number" name="successfulCopyPaste" id="successfulCopyPaste" placeholder="Successful copy & paste count"required>
+            </div>
+            <div class="col-xs-12">
+              <button type="submit">Submit</buttom>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container history">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Keylogs in detail</h2>
+          <div id="tileHolder">
+            <!-- tiles populated via main.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+  </body>
+</html>

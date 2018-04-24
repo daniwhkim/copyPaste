@@ -1,0 +1,19 @@
+<!-- implement template system -->
+<div class="container" style="margin-top: 60px" id="pet-holder">
+  {{#animals}}
+  <div class="col-md-4 card">
+    <h1>{{name}}</h1>
+    <img src="{{url}}" />
+    <div class="tagHolder">
+      {{#tags}}
+        <div class="tag">{{#}}</div>
+      {{/tags}}
+    </div>
+    <div class="control-panel">
+      <a href="/api/delete/{{._id}}">Delete</a>
+      <br/>
+      <a href="/edit/{{._id}}">Edit</a>
+    </div>
+  </div>
+  {{/animals}}
+</div>
