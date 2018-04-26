@@ -1,3 +1,107 @@
+console.log("Loaded script.js!");
+
+window.addEventListener("load", init);
+
+function init() {
+  console.log("Inside init function!");
+  // buildDoughnutChart(dataFromMongo);
+  // buildLineChart(dataFromMongo);
+  getData();
+}
+
+// var dataFromMongo = [
+//   {
+//     "date": "04/05/2018",
+//     "successfulCopyPaste": "31",
+//     "copy": "46",
+//     "paste": "62"
+//   },
+//   {
+//     "date": "04/06/2018",
+//     "successfulCopyPaste": "62",
+//     "copy": "85",
+//     "paste": "96"
+//   },
+//   {
+//     "date": "04/07/2018",
+//     "successfulCopyPaste": "38",
+//     "copy": "51",
+//     "paste": "63"
+//   },
+//   {
+//     "date": "04/08/2018",
+//     "successfulCopyPaste": "143",
+//     "copy": "203",
+//     "paste": "217"
+//   },
+//   {
+//     "date": "04/09/2018",
+//     "successfulCopyPaste": "270",
+//     "copy": "399",
+//     "paste": "366"
+//   },
+//   {
+//     "date": "04/10/2018",
+//     "successfulCopyPaste": "12",
+//     "copy": "21",
+//     "paste": "18"
+//   },
+//   {
+//     "date": "04/11/2018",
+//     "successfulCopyPaste": "4",
+//     "copy": "4",
+//     "paste": "11"
+//   },
+//   {
+//     "date": "04/12/2018",
+//     "successfulCopyPaste": "58",
+//     "copy": "93",
+//     "paste": "109"
+//   },
+//   {
+//     "date": "04/13/2018",
+//     "successfulCopyPaste": "45",
+//     "copy": "159",
+//     "paste": "80"
+//   },
+//   {
+//     "date": "04/14/2018",
+//     "successfulCopyPaste": "6",
+//     "copy": "7",
+//     "paste": "31"
+//   },
+//   {
+//     "date": "04/15/2018",
+//     "successfulCopyPaste": "41",
+//     "copy": "116",
+//     "paste": "64"
+//   },
+//   {
+//     "date": "04/16/2018",
+//     "successfulCopyPaste": "40",
+//     "copy": "94",
+//     "paste": "59"
+//   },
+//   {
+//     "date": "04/17/2018",
+//     "successfulCopyPaste": "24",
+//     "copy": "52",
+//     "paste": "38"
+//   },
+//   {
+//     "date": "04/18/2018",
+//     "successfulCopyPaste": "32",
+//     "copy": "57",
+//     "paste": "50"
+//   },
+//   {
+//     "date": "04/19/2018",
+//     "successfulCopyPaste": "2",
+//     "copy": "3",
+//     "paste": "15"
+//   }
+// ]
+
 function getData() {
   $.ajax({
     url: "/api/get",
@@ -9,9 +113,9 @@ function getData() {
     success: function(data) {
       console.log("Success! Data receieved!");
       console.log(data);
-      // receive data from form, push to respective arrays, and render/add to charts
 
       var formEntry = data.formEntry;
+      console.log(formEntry);
       formEntry.forEach(function(currentEl) {
         var htmlToAppend = '<div class="col-lg-4 col-md-6 col-sm-6 col-lg-12">'+
           '<div class="tile">'+
@@ -38,69 +142,36 @@ function getData() {
         '</div>';
 
         $('#tileHolder').append(htmlToAppend);
-      })
+      });
+
+      buildDoughnutChart(formEntry);
+      buildLineChart(formEntry);
     }
   })
 }
 
-var dataFromMongo = [
-  {
-    "date": "04/12/2018",
-    "copy": 400,
-    "paste": 600,
-    "copyPaste": 500
-  },
-  {
-    "date": "04/13/2018",
-    "copy": 100,
-    "paste": 300,
-    "copyPaste": 200
-  },
-  {
-    "date": "04/14/2018",
-    "copy": 600,
-    "paste": 700,
-    "copyPaste": 700
-  }
-]
-
-console.log("Loaded script.js!");
-
-window.addEventListener("load", init);
-
-function init() {
-  console.log("Inside init function!");
-  // console.log(dataFromMongo);
-  // renderStats(dataFromMongo);
-  buildDoughnutChart(dataFromMongo);
-  buildLineChart(dataFromMongo);
-  getData();
-}
-
-// function renderStats(data) {
-//   console.log("Inside renderStats function!");
-// }
-
 function buildDoughnutChart(data) {
   console.log("Inside buildDoughnutChart function!");
-  // console.log(data);
 
-  var copyArray = [];
-  data.forEach(function(currentEl) {
-    copyArray.push(currentEl.copy);
-  })
+  var totalCopy = 0;
+  $.each(data, function (key, value) {
+    console.log(value["copy"]);
+    totalCopy = totalCopy + parseInt(value["copy"]);
+  });
+  // console.log(totalCopy);
 
-  var pasteArray = [];
-  data.forEach(function(currentEl) {
-    pasteArray.push(currentEl.paste);
-  })
+  var totalPaste = 0;
+  $.each(data, function (key, value) {
+    console.log(value["paste"]);
+    totalPaste = totalPaste + parseInt(value["paste"]);
+  });
+  // console.log(totalPaste);
 
   var data = {
-    labels: ["Copy", "Paste"],
+    labels: ["Paste", "Copy"],
     datasets: [
       {
-        data: [350, 90],
-        // data: [Sum of copyArray, Sum of pasteArray],
+        data: [totalPaste, totalCopy],
         backgroundColor: ["#EAEAEA", "#D6D6D6"],
         borderWidth: [0, 0],
         hoverBackgroundColor: ["#F4F4F4", "#F4F4F4"],
@@ -148,7 +219,6 @@ function buildDoughnutChart(data) {
 
 function buildLineChart(data) {
   console.log("Inside buildLineChart function!");
-  // console.log(data);
 
   var dateArray = [];
   data.forEach(function(currentEl) {
@@ -157,8 +227,7 @@ function buildLineChart(data) {
 
   var copyPasteArray = [];
   data.forEach(function(currentEl) {
-    copyPasteArray.push(currentEl.copyPaste);
-    console.log(copyPasteArray)
+    copyPasteArray.push(currentEl.successfulCopyPaste);
   })
 
   var data = {
